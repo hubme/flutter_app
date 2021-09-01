@@ -1,7 +1,10 @@
 import 'dart:ui';
 
 import 'package:english_words/english_words.dart'; //https://pub.dev/packages/english_words
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'FlexLayoutRoute.dart';
 
 void main() => runApp(MyApp());
 
@@ -34,7 +37,9 @@ class MyApp extends StatelessWidget {
         "button_widget_page": (context) => ButtonWidgetRoute(),
         "image_widget_page": (context) => ImageWidgetRoute(),
         "switch_checkbox_widget_page": (context) => SwitchAndCheckBoxRoute(),
-        "textfield_widget_page": (context) => TextFieldAndFormRoute()
+        "textfield_widget_page": (context) => TextFieldAndFormRoute(),
+        "layout_page": (context) => LayoutWidgetRoute(),
+        "stack_page": (context) => StackRouter(),
       },
       // onGenerateRoute 只会对命名路由生效。
       onGenerateRoute: (RouteSettings settings) {
@@ -186,6 +191,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.of(context).pushNamed("textfield_widget_page");
               },
               child: Text("TextField Widget"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed("layout_page");
+              },
+              child: Text("布局类组件"),
             )
           ],
         ),
@@ -342,7 +353,93 @@ class TextWidgetRoute extends StatelessWidget {
                     color: Colors.green,
                   ),
                 ],
-              )
+              ),
+              Padding(
+                padding: EdgeInsets.all(10),
+                child: LinearProgressIndicator(
+                  backgroundColor: Colors.green,
+                  valueColor: AlwaysStoppedAnimation(Colors.blue),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(10),
+                child: LinearProgressIndicator(
+                  backgroundColor: Colors.grey[200],
+                  valueColor: AlwaysStoppedAnimation(Colors.blue),
+                  value: 0.5,
+                ),
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: CircularProgressIndicator(
+                      backgroundColor: Colors.grey[200],
+                      valueColor: AlwaysStoppedAnimation(Colors.blue),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: CircularProgressIndicator(
+                      backgroundColor: Colors.grey[200],
+                      valueColor: AlwaysStoppedAnimation(Colors.blue),
+                      value: 0.8,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 60,
+                    width: 60,
+                    child: CircularProgressIndicator(
+                      backgroundColor: Colors.grey[200],
+                      valueColor: AlwaysStoppedAnimation(Colors.blue),
+                      value: 0.8,
+                    ),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 3,
+                child: LinearProgressIndicator(
+                  backgroundColor: Colors.grey[200],
+                  valueColor: AlwaysStoppedAnimation(Colors.blue),
+                  value: 0.5,
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [Text("Hello World, "), Text("I am Jack.")],
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [Text("Hello World, "), Text("I am Jack.")],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                textDirection: TextDirection.rtl,
+                children: [Text("Hello World, "), Text("I am Jack.")],
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                verticalDirection: VerticalDirection.up,
+                children: [
+                  Text(
+                    "Hello World, ",
+                    style: TextStyle(fontSize: 30.0),
+                  ),
+                  Text("I am Jack.")
+                ],
+              ),
+              ConstrainedBox(
+                constraints: BoxConstraints(minWidth: double.infinity),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Text("hi"),
+                    Text("world"),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
@@ -648,3 +745,4 @@ class _TextFieldAndFormState extends State<TextFieldAndFormRoute> {
         ));
   }
 }
+

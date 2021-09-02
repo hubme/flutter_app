@@ -129,9 +129,14 @@ class LayoutWidgetRoute extends StatelessWidget {
           ),
           TextButton(
               onPressed: () {
-                Navigator.of(context).pushNamed("stack_page");
+                Navigator.of(context).pushNamed("stack_positioned_page");
               },
-              child: Text("Stack 组件")),
+              child: Text("Stack 和 Positioned 布局容器")),
+          TextButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed("align_alignment_page");
+              },
+              child: Text("Align 和 Alignment 布局容器"))
         ],
       ),
     );
@@ -177,12 +182,12 @@ class TestFlowDelegate extends FlowDelegate {
   }
 }
 
-class StackRouter extends StatelessWidget {
+class StackPositionedRouter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Stack Layout"),
+        title: Text("Stack And Positioned"),
       ),
       body: ConstrainedBox(
         constraints: BoxConstraints.expand(),
@@ -202,12 +207,114 @@ class StackRouter extends StatelessWidget {
               left: 18.0,
             ),
             Positioned(
-              child: Text("Your feiend."),
+              child: Text("Your friend."),
               top: 18.0,
             ),
           ],
         ),
       ),
     );
+  }
+}
+
+class AlignAlignmentRouter extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("Align And Alignment"),
+        ),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: 120.0,
+              width: 120.0,
+              color: Colors.blue[50],
+              child: Align(
+                alignment: Alignment.topRight,
+                child: FlutterLogo(
+                  size: 60,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10.0),
+              child: Container(
+                height: 120.0,
+                width: 120.0,
+                color: Colors.blue[50],
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: FlutterLogo(
+                    size: 60,
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10.0),
+              child: Container(
+                height: 200.0,
+                width: 100.0,
+                color: Colors.blue[50],
+                child: Align(
+                  // 以矩形的中心点作为坐标原
+                  // x、y的值从-1到1分别代表矩形左边到右边的距离和顶部到底边的距离
+                  // (Alignment.x*childWidth/2+childWidth/2, Alignment.y*childHeight/2+childHeight/2)
+                  alignment: Alignment(2.0, 0.0),
+                  child: FlutterLogo(
+                    size: 60,
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10.0),
+              child: Container(
+                height: 100.0,
+                width: 100.0,
+                color: Colors.blue[50],
+                child: Align(
+                  // 缩放因子，会分别乘以子元素的宽、高
+                  widthFactor: 2,
+                  heightFactor: 2,
+                  // 以矩形的中心点作为坐标原
+                  // x、y的值从-1到1分别代表矩形左边到右边的距离和顶部到底边的距离
+                  // (Alignment.x*childWidth/2+childWidth/2, Alignment.y*childHeight/2+childHeight/2)
+                  alignment: Alignment.centerRight,
+                  child: FlutterLogo(
+                    size: 60,
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding:
+                  const EdgeInsets.only(left: 10.0, top: 10.0, bottom: 5.0),
+              child: Container(
+                height: 120.0,
+                width: 120.0,
+                color: Colors.blue[50],
+                child: Align(
+                  alignment: FractionalOffset(0.2, 0.5),
+                  child: FlutterLogo(
+                    size: 60,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: 100.0,
+              height: 100.0,
+              color: Colors.green,
+              child: Center(
+                child: Text("Hello"),
+                widthFactor: 1,
+                heightFactor: 1,
+              ),
+            )
+          ],
+        ));
   }
 }

@@ -4,7 +4,7 @@ import 'package:english_words/english_words.dart'; //https://pub.dev/packages/en
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'FlexLayoutRoute.dart';
+import 'LayoutRouter.dart';
 
 void main() => runApp(MyApp());
 
@@ -39,7 +39,8 @@ class MyApp extends StatelessWidget {
         "switch_checkbox_widget_page": (context) => SwitchAndCheckBoxRoute(),
         "textfield_widget_page": (context) => TextFieldAndFormRoute(),
         "layout_page": (context) => LayoutWidgetRoute(),
-        "stack_page": (context) => StackRouter(),
+        "stack_positioned_page": (context) => StackPositionedRouter(),
+        "align_alignment_page": (context) => AlignAlignmentRouter(),
       },
       // onGenerateRoute 只会对命名路由生效。
       onGenerateRoute: (RouteSettings settings) {

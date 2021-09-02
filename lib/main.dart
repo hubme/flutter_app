@@ -41,6 +41,7 @@ class MyApp extends StatelessWidget {
         "layout_page": (context) => LayoutWidgetRoute(),
         "stack_positioned_page": (context) => StackPositionedRouter(),
         "align_alignment_page": (context) => AlignAlignmentRouter(),
+        "constrained_layout_page": (context) => ConstrainedRouter(),
       },
       // onGenerateRoute 只会对命名路由生效。
       onGenerateRoute: (RouteSettings settings) {

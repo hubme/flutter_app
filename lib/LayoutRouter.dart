@@ -6,6 +6,10 @@ import 'package:flutter/material.dart';
 流式布局：Wrap Flow
 层叠布局：Stack Positioned
 对齐与相对定位：Align
+指定子组件的长宽比：AspectRatio
+指定最大宽高：LimitedBox
+根据父容器宽高的百分比来设置子组件宽高：FractionallySizedBox
+装饰容器：DecoratedBox
  */
 class LayoutWidgetRoute extends StatelessWidget {
   @override
@@ -136,7 +140,12 @@ class LayoutWidgetRoute extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).pushNamed("align_alignment_page");
               },
-              child: Text("Align 和 Alignment 布局容器"))
+              child: Text("Align 和 Alignment 布局容器")),
+          TextButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed("constrained_layout_page");
+              },
+              child: Text("尺寸限制类容器"))
         ],
       ),
     );
@@ -316,5 +325,47 @@ class AlignAlignmentRouter extends StatelessWidget {
             )
           ],
         ));
+  }
+}
+
+class ConstrainedRouter extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    Widget greenBox = DecoratedBox(
+      decoration: BoxDecoration(color: Colors.green),
+    );
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("尺寸限制类容器"),
+        actions: [
+          UnconstrainedBox(
+            child: SizedBox(
+              width: 20,
+              height: 20,
+              child: CircularProgressIndicator(
+                strokeWidth: 3,
+                valueColor: AlwaysStoppedAnimation(Colors.white70),
+              ),
+            ),
+          )
+        ],
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            ConstrainedBox(
+                // BoxConstraints.tight(Size(50.0, 50.0))
+                // BoxConstraints.expand()
+                constraints: BoxConstraints(
+                    minWidth: double.infinity, //宽度尽可能大
+                    minHeight: 50.0 //最小高度为50像素
+                    ),
+                child: greenBox),
+            SizedBox(width: 80.0, height: 80.0, child: greenBox)
+          ],
+        ),
+      ),
+    );
   }
 }

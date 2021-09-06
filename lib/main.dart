@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'LayoutRouter.dart';
+import 'TransformWidgetRouter.dart';
 
 void main() => runApp(MyApp());
 
@@ -38,10 +39,11 @@ class MyApp extends StatelessWidget {
         "image_widget_page": (context) => ImageWidgetRoute(),
         "switch_checkbox_widget_page": (context) => SwitchAndCheckBoxRoute(),
         "textfield_widget_page": (context) => TextFieldAndFormRoute(),
-        "layout_page": (context) => LayoutWidgetRoute(),
+        "layout_page": (context) => LayoutWidgetRouter(),
         "stack_positioned_page": (context) => StackPositionedRouter(),
         "align_alignment_page": (context) => AlignAlignmentRouter(),
         "constrained_layout_page": (context) => ConstrainedRouter(),
+        "transform_page": (context) => TransformWidgetRouter(),
       },
       // onGenerateRoute 只会对命名路由生效。
       onGenerateRoute: (RouteSettings settings) {
@@ -199,6 +201,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.of(context).pushNamed("layout_page");
               },
               child: Text("布局类组件"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed("transform_page");
+              },
+              child: Text("变换"),
             )
           ],
         ),
@@ -747,4 +755,3 @@ class _TextFieldAndFormState extends State<TextFieldAndFormRoute> {
         ));
   }
 }
-

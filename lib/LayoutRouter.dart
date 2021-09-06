@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 根据父容器宽高的百分比来设置子组件宽高：FractionallySizedBox
 装饰容器：DecoratedBox
  */
-class LayoutWidgetRoute extends StatelessWidget {
+class LayoutWidgetRouter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

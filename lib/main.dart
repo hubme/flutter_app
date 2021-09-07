@@ -7,6 +7,7 @@ import 'package:flutter_app/ScaffoldRoute.dart';
 
 import 'ClipRoute.dart';
 import 'LayoutRouter.dart';
+import 'ListViewRoute.dart';
 import 'TransformWidgetRouter.dart';
 
 void main() => runApp(MyApp());
@@ -48,6 +49,7 @@ class MyApp extends StatelessWidget {
         "transform_page": (context) => TransformWidgetRouter(),
         "scaffold_page": (context) => ScaffoldRoute(),
         "clip_page": (context) => ClipRoute(),
+        "listview_page": (context) => ListViewRoute(),
       },
       // onGenerateRoute 只会对命名路由生效。
       onGenerateRoute: (RouteSettings settings) {
@@ -223,6 +225,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.of(context).pushNamed("clip_page");
               },
               child: Text("Clip"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed("listview_page");
+              },
+              child: Text("LsitView"),
             )
           ],
         ),

@@ -90,9 +90,60 @@ class TransformWidgetRouter extends StatelessWidget {
                   style: TextStyle(color: Colors.green, fontSize: 18.0),
                 )
               ],
-            )
+            ),
+            ContainerSampleWidget()
           ],
         ),
+      ),
+    );
+  }
+}
+
+class ContainerSampleWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Container(
+            //容器大小的限制条件。width、height优先级最高
+            constraints: BoxConstraints.tightFor(width: 200.0, height: 150.0),
+            //背景装饰，和 color 属性互斥。
+            decoration: BoxDecoration(
+                //背景径向渐变
+                gradient: RadialGradient(
+                    colors: [Colors.red, Colors.orange],
+                    center: Alignment.topLeft,
+                    radius: 0.98),
+                // 卡片阴影
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.black54,
+                      offset: Offset(2.0, 2.0),
+                      blurRadius: 4.0)
+                ]),
+            //卡片倾斜变换
+            transform: Matrix4.rotationZ(0.2),
+            //卡片内文字居中
+            alignment: Alignment.center,
+            //卡片文字
+            child: Text(
+              "5.20",
+              style: TextStyle(color: Colors.white, fontSize: 40.0),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 40.0), //容器外补白
+            color: Colors.orange,
+            child: Text("Hello world!"),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 10.0),
+            padding: EdgeInsets.only(top: 10.0, right: 5.0), //容器内补白
+            color: Colors.orange,
+            child: Text("Hello world!"),
+          ),
+        ],
       ),
     );
   }

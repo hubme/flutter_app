@@ -3,7 +3,9 @@ import 'dart:ui';
 import 'package:english_words/english_words.dart'; //https://pub.dev/packages/english_words
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/ScaffoldRoute.dart';
 
+import 'ClipRoute.dart';
 import 'LayoutRouter.dart';
 import 'TransformWidgetRouter.dart';
 
@@ -44,6 +46,8 @@ class MyApp extends StatelessWidget {
         "align_alignment_page": (context) => AlignAlignmentRouter(),
         "constrained_layout_page": (context) => ConstrainedRouter(),
         "transform_page": (context) => TransformWidgetRouter(),
+        "scaffold_page": (context) => ScaffoldRoute(),
+        "clip_page": (context) => ClipRoute(),
       },
       // onGenerateRoute 只会对命名路由生效。
       onGenerateRoute: (RouteSettings settings) {
@@ -207,6 +211,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.of(context).pushNamed("transform_page");
               },
               child: Text("变换"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed("scaffold_page");
+              },
+              child: Text("TabBar Drawer TabBarView FloatingActionButton"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed("clip_page");
+              },
+              child: Text("Clip"),
             )
           ],
         ),

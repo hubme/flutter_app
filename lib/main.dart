@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/ScaffoldRoute.dart';
 
 import 'ClipRoute.dart';
+import 'GridViewRoute.dart';
 import 'LayoutRouter.dart';
 import 'ListViewRoute.dart';
 import 'TransformWidgetRouter.dart';
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
         "scaffold_page": (context) => ScaffoldRoute(),
         "clip_page": (context) => ClipRoute(),
         "listview_page": (context) => ListViewRoute(),
+        "gridview_page": (context) => GridViewRoute(),
       },
       // onGenerateRoute 只会对命名路由生效。
       onGenerateRoute: (RouteSettings settings) {
@@ -230,7 +232,13 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 Navigator.of(context).pushNamed("listview_page");
               },
-              child: Text("LsitView"),
+              child: Text("ListView"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed("gridview_page");
+              },
+              child: Text("GridView"),
             )
           ],
         ),
